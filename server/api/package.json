@@ -1,0 +1,28 @@
+{
+  "name": "v2ray-docker-server-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "cuibin",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "dev": "node index",
+    "start": "node index",
+    "docker:build": "docker build -t cuibin/v2ray-server:latest ..",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-plugin-node": "^9.1.0"
+  },
+  "dependencies": {
+    "commander": "2.20.0",
+    "express": "4.17.1",
+    "express-graphql": "0.8.0",
+    "graphql": "14.3.1",
+    "lodash": "^4.17.11"
+  }
+}
