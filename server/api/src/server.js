@@ -15,25 +15,25 @@ module.exports = program => {
     if (program.domain) {
       config.nginx.access_log = config.nginx.access_log.replace(/__DOMAIN__/g, program.domain)
       config.nginx.error_log = config.nginx.error_log.replace(/__DOMAIN__/g, program.domain)
-      execSync(`sed 's/__ACCESSLOG__/${transfer(config.nginx.access_log)}/g' ${config.nginx.conf}`)
+      execSync(`sed -i 's/__ACCESSLOG__/${transfer(config.nginx.access_log)}/g' ${config.nginx.conf}`)
       log(`set nginx access_log ${config.nginx.access_log} ok.`)
-      execSync(`sed 's/__ERRORLOG__/${transfer(config.nginx.error_log)}/g' ${config.nginx.conf}`)
+      execSync(`sed -i 's/__ERRORLOG__/${transfer(config.nginx.error_log)}/g' ${config.nginx.conf}`)
       log(`set nginx error_log ${config.nginx.error_log} ok.`)
-      execSync(`sed 's/__DOMAIN__/${program.domain}/g' ${config.nginx.conf}`)
+      execSync(`sed -i 's/__DOMAIN__/${program.domain}/g' ${config.nginx.conf}`)
       log(`domain ${program.domain} replaced.`)
     }
 
     // replace v2ray conf
-    execSync(`sed 's/__UUID__/${config.v2ray.uuid}/g' ${config.v2ray.conf}`)
+    execSync(`sed -i 's/__UUID__/${config.v2ray.uuid}/g' ${config.v2ray.conf}`)
     log(`set v2ray uuid ${program.uuid || config.v2ray.uuid} ok.`)
-    execSync(`sed 's/__ACCESSLOG__/${transfer(config.v2ray.access_log)}/g' ${config.v2ray.conf}`)
+    execSync(`sed -i 's/__ACCESSLOG__/${transfer(config.v2ray.access_log)}/g' ${config.v2ray.conf}`)
     log(`set v2ray access_log ${config.v2ray.access_log} ok.`)
-    execSync(`sed 's/__ERRORLOG__/${transfer(config.v2ray.error_log)}/g' ${config.v2ray.conf}`)
+    execSync(`sed -i 's/__ERRORLOG__/${transfer(config.v2ray.error_log)}/g' ${config.v2ray.conf}`)
     log(`set v2ray error_log ${config.v2ray.error_log} ok.`)
 
     // replace uuid
     if (program.uuid) {
-      execSync(`sed 's/__UUID__/${program.uuid}/g' ${config.v2rayconf}`)
+      execSync(`sed -i 's/__UUID__/${program.uuid}/g' ${config.v2rayconf}`)
       log(`uuid ${program.uuid} replaced.`)
     }
 
