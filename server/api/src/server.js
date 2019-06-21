@@ -33,12 +33,12 @@ module.exports = program => {
 
     // replace uuid
     if (program.uuid) {
-      execSync(`sed -i 's/__UUID__/${program.uuid}/g' ${config.v2rayconf}`)
+      execSync(`sed -i 's/__UUID__/${program.uuid}/g' ${config.v2ray.conf}`)
       log(`uuid ${program.uuid} replaced.`)
     }
 
     // start v2ray
-    data.v2ray = spawn('/usr/bin/v2ray/v2ray', ['-config', config.v2rayconf])
+    data.v2ray = spawn('/usr/bin/v2ray/v2ray', ['-config', config.v2ray.conf])
     log(`v2ray started. PID: ${data.v2ray.pid}`)
     data.v2ray.on('error', e => log(`v2ray error: ${e.stack}`))
 
