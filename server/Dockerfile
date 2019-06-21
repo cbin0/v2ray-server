@@ -14,6 +14,8 @@ RUN yum -y install openssl && \
 
 FROM centos:7
 
+ENV NODE_ENV=production
+
 COPY --from=builder /usr/bin/v2ray/v2ray /usr/bin/v2ray/
 COPY --from=builder /usr/bin/v2ray/v2ctl /usr/bin/v2ray/
 COPY --from=builder /usr/bin/v2ray/geoip.dat /usr/bin/v2ray/
