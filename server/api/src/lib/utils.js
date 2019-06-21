@@ -1,6 +1,11 @@
+const {
+  GraphQLInt,
+  GraphQLString
+} = require('graphql')
+
 module.exports = {
   log(msg) {
-    console.log(`[${(new Date).getTime()}]: ${msg}`)
+    console.log(`[${(new Date).toUTCString()}]: ${msg}`)
   },
   fromPairs(array) {
     return array.reduce((memo, x) => {
@@ -8,7 +13,22 @@ module.exports = {
       return memo
     }, {})
   },
-  mapValues() {
-
+  typeTools: {
+    aString(name) {
+      return {
+        type: GraphQLString,
+        resolve(root) {
+          return root[name]
+        }
+      }
+    },
+    aInt(name) {
+      return {
+        type: GraphQLInt,
+        resolve(root) {
+          return root[name]
+        }
+      }
+    }
   }
 }

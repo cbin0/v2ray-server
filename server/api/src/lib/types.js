@@ -6,23 +6,10 @@ const {
   GraphQLString,
   GraphQLList
 } = require('graphql')
-
-let aString = (name) => {
-    return {
-      type: GraphQLString,
-      resolve(root) {
-        return root[name]
-      }
-    }
-  }
-  , aInt = (name) => {
-    return {
-      type: GraphQLInt,
-      resolve(root) {
-        return root[name]
-      }
-    }
-  }
+const rll = require('read-last-lines')
+const config = require('../config')
+const { typeTools } = require('./utils')
+const { aInt, aString } = typeTools
 
 module.exports = {
   process(proc, name) {
@@ -42,6 +29,28 @@ module.exports = {
                 if (Buffer.isBuffer(data))return Buffer.from(data).toString()
                 else return '[Unknown type]'
               })
+            }
+          },
+          access_log: {
+            type: GraphQLString,
+            args: {
+              lines: {
+                type: GraphQLInt
+              }
+            },
+            async resolve(root, args) {
+              return await rll.read(config[name].access_log, Math.min(args.lines || 10, 100))
+            }
+          },
+          error_log: {
+            type: GraphQLString,
+            args: {
+              lines: {
+                type: GraphQLInt
+              }
+            },
+            async resolve(root, args) {
+              return await rll.read(config[name].error_log, Math.min(args.lines || 10, 100))
             }
           },
           error: {

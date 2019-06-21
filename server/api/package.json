@@ -8,8 +8,8 @@
     "node": ">= 10"
   },
   "scripts": {
-    "dev": "node index",
-    "start": "node index",
+    "dev": "node index -d cbdemacbook-pro",
+    "start": "node index -d cbdemacbook-pro",
     "docker:build": "docker build -t cuibin/v2ray-server:latest ..",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src"
@@ -23,6 +23,7 @@
     "express": "4.17.1",
     "express-graphql": "0.8.0",
     "graphql": "14.3.1",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "read-last-lines": "^1.7.1"
   }
 }

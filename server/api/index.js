@@ -6,6 +6,7 @@ program
   .version(package.version)
   .option('-d, --domain [string]', 'server domain')
   .option('-e, --email [string]', 'your email address')
+  .option('-u, --uuid [string]', 'your v2ray uuid')
   .parse(process.argv)
 
 // start srever
