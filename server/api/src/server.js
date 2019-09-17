@@ -37,6 +37,12 @@ module.exports = program => {
       log(`uuid ${program.uuid} replaced.`)
     }
 
+    // replace path
+    if (program.path) {
+      execSync(`sed -i 's/__PATH__/${program.path}/g' ${config.v2ray.conf}`)
+      log(`path ${program.path} replaced.`)
+    }
+
     // start v2ray
     data.v2ray = spawn('/usr/bin/v2ray/v2ray', ['-config', config.v2ray.conf])
     log(`v2ray started. PID: ${data.v2ray.pid}`)

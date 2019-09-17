@@ -7,6 +7,7 @@ program
   .option('-d, --domain [string]', 'server domain')
   .option('-e, --email [string]', 'your email address')
   .option('-u, --uuid [string]', 'your v2ray uuid')
+  .option('-p, --path [string]', 'your v2ray path')
   .parse(process.argv)
 
 // start srever
