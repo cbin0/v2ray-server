@@ -52,7 +52,7 @@ RUN set -ex && \
     yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional && \
     yum -y install certbot python2-certbot-nginx && \
     # install crontab
-    echo "0 0 15 */3 * certbot renew --dry-run" | tee -a /etc/crontab > /dev/null
+    echo "0 0 15 */3 * certbot renew" | tee -a /etc/crontab > /dev/null
 
 EXPOSE 80
 EXPOSE 443
